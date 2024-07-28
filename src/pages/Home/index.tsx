@@ -1,28 +1,21 @@
-import Header from '../../components/Header'
-import Body from '../../components/Body'
-
-import { useGetHomeItemsQuery } from '../../services/api'
+import Hero from '../../components/Hero'
 import Loader from '../../components/Loader'
+import PlacesList from '../../components/PlacesList'
+
+import { useGetRestaurantQuery } from '../../services/api'
 
 const Home = () => {
-  const { data: categories } = useGetHomeItemsQuery()
+  const { data } = useGetRestaurantQuery()
 
-  if (categories) {
+  if (data) {
     return (
       <>
-        <Header />
-        <Body
-          data={categories}
-          type="homeCards"
-          columns="repeat(2, 1fr)"
-          rows="repeat(3, auto)"
-          columnGap="80px"
-          rowGap="48px"
-          margin="home"
-        />
+        <Hero />
+        <PlacesList restaurants={data} />
       </>
     )
   }
+
   return <Loader />
 }
 

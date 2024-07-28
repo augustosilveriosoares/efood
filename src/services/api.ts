@@ -1,9 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-interface MenuResponse {
-  cardapio: CategoryItemType[]
-}
-
 type Product = {
   id: number
   price: number
@@ -40,18 +36,14 @@ type PurchaseResponse = {
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://fake-api-tau.vercel.app/api/efood/'
+    baseUrl: 'https://fake-api-tau.vercel.app/api/efood'
   }),
   endpoints: (builder) => ({
-    getCategoryBanner: builder.query<HomeItemType, string>({
-      query: (id) => `restaurantes/${id}`
-    }),
-    getCategoryProducts: builder.query<CategoryItemType[], string>({
-      query: (id) => `restaurantes/${id}`,
-      transformResponse: (response: MenuResponse) => response.cardapio
-    }),
-    getHomeItems: builder.query<HomeItemType[], void>({
+    getRestaurant: builder.query<Food[], void>({
       query: () => 'restaurantes'
+    }),
+    getMenu: builder.query<Food, string>({
+      query: (id) => `restaurantes/${id}`
     }),
     purchase: builder.mutation<PurchaseResponse, PurchasePayload>({
       query: (body) => ({
@@ -62,11 +54,6 @@ const api = createApi({
     })
   })
 })
-
-export const {
-  useGetCategoryBannerQuery,
-  useGetCategoryProductsQuery,
-  useGetHomeItemsQuery,
-  usePurchaseMutation
-} = api
+export const { useGetRestaurantQuery, useGetMenuQuery, usePurchaseMutation } =
+  api
 export default api

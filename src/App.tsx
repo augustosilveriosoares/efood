@@ -1,26 +1,18 @@
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
+import { GlobalCss } from './styles'
 
-import AppRoutes from './routes'
-import { store } from './store'
-
+import Paths from './routes'
 import Footer from './components/Footer'
-import Cart from './pages/Cart'
-
-import { GlobalStyle } from './styles'
-import Delivery from './pages/Delivery'
-import Payment from './pages/Payment'
+import { store } from './store'
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <GlobalStyle />
-        <AppRoutes />
+        <GlobalCss />
+        <Paths />
         <Footer />
-        <Cart />
-        <Delivery />
-        <Payment />
       </BrowserRouter>
     </Provider>
   )

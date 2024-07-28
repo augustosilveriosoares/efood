@@ -1,13 +1,11 @@
-import { ClockLoader } from 'react-spinners'
+import { BeatLoader } from 'react-spinners'
 import { colors } from '../../styles'
 import { Container } from './styles'
 
-const Loader = () => {
-  return (
-    <Container>
-      <ClockLoader color={colors.red} />
-    </Container>
-  )
-}
+const Loader = () => (
+  <Container>
+    <BeatLoader color={colors.rose} />
+  </Container>
+)
 
 export default Loader

@@ -1,30 +1,25 @@
-import { useParams } from 'react-router-dom'
+import * as S from './styles'
 
-import { useGetCategoryBannerQuery } from '../../services/api'
-
-import { BannerStyle } from './styles'
-
-type Params = {
-  id: string
+export type Props = {
+  image: string
+  cuisine: string
+  title: string
 }
 
-const Banner = () => {
-  const { id } = useParams() as Params
-
-  const { data: category } = useGetCategoryBannerQuery(id)
-
+const SecondBanner = ({ image, cuisine, title }: Props) => {
   return (
-    <>
-      {category && (
-        <BannerStyle image={category?.capa}>
-          <div className="container">
-            <h1>{category?.tipo}</h1>
-            <h1>{category?.titulo}</h1>
-          </div>
-        </BannerStyle>
-      )}
-    </>
+    <S.BannerRest
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`
+      }}
+    >
+      <div className="container">
+        <S.TitleCuisine>{cuisine}</S.TitleCuisine>
+
+        <S.TitleRest>{title}</S.TitleRest>
+      </div>
+    </S.BannerRest>
   )
 }
 
-export default Banner
+export default SecondBanner

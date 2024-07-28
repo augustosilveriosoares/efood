@@ -1,32 +1,28 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const colors = {
-  red: '#E66767',
-  beige: '#FFF8F2',
-  darkBeige: '#FFEBD9',
-  white: '#FFFFFF',
-  black: '#000',
-  lightBlack: '#4B4B4B'
+  white: '#fff',
+  rose: '#E66767',
+  lightRose: '#FFEBD9',
+  backgroundColor: '#FFF8F2'
 }
 
 export const breakpoints = {
   desktop: '1024px',
-  tablet: '768px',
-  smallTablet: '960px'
+  tablet: '768px'
 }
 
-export const GlobalStyle = createGlobalStyle`
-  * {
+export const GlobalCss = createGlobalStyle`
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Roboto, sans-serif;
   list-style: none;
-  text-decoration: none;
-  }
 
   body {
-    background-color: ${colors.beige};
+    background-color: ${colors.backgroundColor};
+    color: ${colors.rose};
   }
 
   .container {
@@ -34,12 +30,13 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     margin: 0 auto;
 
-    .invisible {
-      display: none;
+    @media (max-width: ${breakpoints.desktop}) {
+      max-width: 60%;
     }
 
-    @media (max-width: ${breakpoints.desktop}) {
-      max-width: 80%;
+    @media (max-width: ${breakpoints.tablet}) {
+      max-width: 60%;
     }
   }
+}
 `

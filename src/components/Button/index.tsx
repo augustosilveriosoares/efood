@@ -1,38 +1,27 @@
-import { ButtonContainer } from './styles'
+import * as S from './styles'
 
-export interface Props {
-  children: string | string[]
+export type Props = {
+  type: 'button' | 'link' | 'submit'
+  title: string
+  to?: string
   onClick?: () => void
-  backgroundColor: 'beige' | 'red'
-  width: '100%' | 'auto'
-  customPadding: '4px 0' | '4px 6.95px' | '4px 6px'
-  marginBottom?: string
-  type?: 'submit' | 'button'
-  disabled?: boolean
+  children: JSX.Element | string
+  isActive?: boolean
 }
 
-const Button = ({
-  children,
-  onClick,
-  width,
-  backgroundColor,
-  customPadding,
-  marginBottom,
-  type,
-  disabled
-}: Props) => {
+const Button = ({ type, title, to, onClick, children }: Props) => {
+  if (type === 'button' || type === 'submit') {
+    return (
+      <S.ButtonAdd type={type} title={title} onClick={onClick}>
+        {children}
+      </S.ButtonAdd>
+    )
+  }
+
   return (
-    <ButtonContainer
-      width={width}
-      backgroundColor={backgroundColor}
-      onClick={onClick}
-      customPadding={customPadding}
-      marginBottom={marginBottom}
-      type={type}
-      disabled={disabled}
-    >
+    <S.ButtonLink to={to as string} title={title}>
       {children}
-    </ButtonContainer>
+    </S.ButtonLink>
   )
 }
 

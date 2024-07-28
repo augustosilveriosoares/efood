@@ -1,15 +1,12 @@
-export const parseToBrl = (amount = 0) => {
+export const priceBRL = (preco = 0) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL'
-  }).format(amount)
+  }).format(preco)
 }
 
-export const getTotalPrice = (items: CategoryItemType[]) => {
-  return items.reduce((accumulator, currentValue) => {
-    if (currentValue.preco) {
-      return (accumulator += currentValue.preco)
-    }
-    return 0
+export const getTotalPrice = (items: Menu[]) => {
+  return items.reduce((soma, ValorAtual) => {
+    return (soma += ValorAtual.preco)
   }, 0)
 }
